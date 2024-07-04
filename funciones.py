@@ -3,6 +3,8 @@ from os import system
 
 pedidos = []
 
+sectores = ("Concepción", "Chiguayante", "Talcahuano", "Hualpén", "San Pedro")
+
 def registro_pedido(pedidos):
     system("cls")
     disp_6 = 0
@@ -113,27 +115,17 @@ def listar(pedidos):
         {pedido["ID pedido"]}       {pedido["Nombre"]}      {pedido["Direccion"]}       {pedido["Sector"]}      {pedido["Disp.6lts"]}        {pedido["Disp.10lts"]}       {pedido["Disp.20lts"]}
                                     {pedido["Apellido"]}""")
 
-# def imprimir_ruta(pedidos):
-#     system("cls")
-#     for pedido in pedidos:
-#         archivo = open("pedido_certamen.csv", "w")
-#         archivo.write(f"ID pedido: {pedido["ID pedido"]};")
-#         archivo.write(f"Nombre: {pedido["Nombre"]};")
-#         archivo.write(f"Apellido: {pedido["Apellido"]};")
-#         archivo.write(f"Direccion: {pedido["Direccion"]};")
-#         archivo.write(f"Sector: {pedido["Sector"]};")
-#         archivo.write(f"Disp.6lts: {pedido["Disp.6lts"]};")
-#         archivo.write(f"Disp.10lts: {pedido["Disp.10lts"]};")
-#         archivo.write(f"Disp.20lts: {pedido["Disp.20lts"]};")
-#         archivo.close()
-        
 def imprimir_ruta(pedidos):
     system("cls")
-    for pedido in pedidos:
-        archivo = open(f"pedido{pedido["Sector"]}.csv", "w")
-        archivo.write("IDpedido;Nombre;Apellido;Direccion;Sector;Disp.6lts;Disp.10lts;Disp.20lts")
-        archivo.write(f"\n{pedido["Nombre"]};{pedido["Apellido"]};{pedido["Direccion"]};{pedido["Sector"]};{pedido["Disp.6lts"]};{pedido["Disp.10lts"]};{pedido["Disp.20lts"]}\n")
-        archivo.close()
+    sector_buscado = input("Ingrese un sector para imprimir (Concepción, Chiguayante, Talcahuano, Hualpén, San Pedro): ")
+    if sector_buscado in sectores:
+        for pedido in pedidos:
+            archivo = open(f"pedido{pedido["Sector"]}.csv", "w")
+            archivo.write("IDpedido;Nombre;Apellido;Direccion;Sector;Disp.6lts;Disp.10lts;Disp.20lts")
+            archivo.write(f"\n{pedido["Nombre"]};{pedido["Apellido"]};{pedido["Direccion"]};{pedido["Sector"]};{pedido["Disp.6lts"]};{pedido["Disp.10lts"]};{pedido["Disp.20lts"]}\n")
+            archivo.close()
+    else:
+        print("Sector no valido")
 
 def buscar_pedido(pedidos):
     system("cls")
